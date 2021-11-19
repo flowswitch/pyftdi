@@ -29,7 +29,7 @@ NAME = 'pyftdi'
 PACKAGES = find_packages(where='.')
 META_PATH = joinpath('pyftdi', '__init__.py')
 KEYWORDS = ['driver', 'ftdi', 'usb', 'serial', 'spi', 'i2c', 'twi', 'rs232',
-            'gpio', 'bit-bang']
+            'c2', 'gpio', 'bit-bang']
 CLASSIFIERS = [
     'Development Status :: 4 - Beta',
     'Environment :: Other Environment',

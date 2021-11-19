@@ -3,17 +3,17 @@
 FTDI device pinout
 ------------------
 
-============ ============= ======= ====== ============== ========== ====== ============
- IF/1 [#ih]_ IF/2 [#if2]_  BitBang  UART   |I2C|          SPI        JTAG   C232HD cable
-============ ============= ======= ====== ============== ========== ====== ============
- ``ADBUS0``   ``BDBUS0``   GPIO0    TxD    SCK            SCLK       TCK   Orange
- ``ADBUS1``   ``BDBUS1``   GPIO1    RxD    SDA/O [#i2c]_  MOSI       TDI   Yellow
- ``ADBUS2``   ``BDBUS2``   GPIO2    RTS    SDA/I [#i2c]_  MISO       TDO   Green
- ``ADBUS3``   ``BDBUS3``   GPIO3    CTS    GPIO3          CS0        TMS   Brown
- ``ADBUS4``   ``BDBUS4``   GPIO4    DTR    GPIO4          CS1/GPIO4        Grey
- ``ADBUS5``   ``BDBUS5``   GPIO5    DSR    GPIO5          CS2/GPIO5        Purple
- ``ADBUS6``   ``BDBUS6``   GPIO6    DCD    GPIO6          CS3/GPIO6        White
- ``ADBUS7``   ``BDBUS7``   GPIO7    RI     RSCK [#rck]_   CS4/GPIO7  RCLK  Blue
+============ ============= ======= ====== ============== ========== ====== ================ ============
+ IF/1 [#ih]_ IF/2 [#if2]_  BitBang  UART   |I2C|          SPI        JTAG   C2               C232HD cable
+============ ============= ======= ====== ============== ========== ====== ================ ============
+ ``ADBUS0``   ``BDBUS0``   GPIO0    TxD    SCK            SCLK       TCK    C2CK             Orange
+ ``ADBUS1``   ``BDBUS1``   GPIO1    RxD    SDA/O [#i2c]_  MOSI       TDI    C2D/O [#c2]_     Yellow
+ ``ADBUS2``   ``BDBUS2``   GPIO2    RTS    SDA/I [#i2c]_  MISO       TDO    C2D/I [#c2]_     Green
+ ``ADBUS3``   ``BDBUS3``   GPIO3    CTS    GPIO3          CS0        TMS                     Brown
+ ``ADBUS4``   ``BDBUS4``   GPIO4    DTR    GPIO4          CS1/GPIO4                          Grey
+ ``ADBUS5``   ``BDBUS5``   GPIO5    DSR    GPIO5          CS2/GPIO5         C2D/WAIT [#c2]_  Purple
+ ``ADBUS6``   ``BDBUS6``   GPIO6    DCD    GPIO6          CS3/GPIO6                          White
+ ``ADBUS7``   ``BDBUS7``   GPIO7    RI     RSCK [#rck]_   CS4/GPIO7  RCLK                    Blue
  ``ACBUS0``   ``BCBUS0``                   GPIO8          GPIO8
  ``ACBUS1``   ``BCBUS1``                   GPIO9          GPIO9
  ``ACBUS2``   ``BCBUS2``                   GPIO10         GPIO10
@@ -37,3 +37,7 @@ FTDI device pinout
 .. [#rck] In order to support I2C clock stretch mode, ADBUS7 should be
           connected to SCK. When clock stretching mode is not selected, ADBUS7
           may be used as GPIO7.
+.. [#c2]  C2 C2D line is bidirectional, two FTDI pins are used for Input and Output,
+          plus an additional imput pin is used for end of WAIT state detection 
+          using MPSSE CLK_WAIT_ON_HIGH command (requires a specific pin different from Input).
+          All these 3 pins should be connected together and to the C2D C2 interface line.
