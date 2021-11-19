@@ -45,6 +45,7 @@ PyFtdi currently supports the following features:
 * Basic JTAG master capabilities
 * EEPROM support (some parameters cannot yet be modified, only retrieved)
 * Experimental CBUS support on selected devices, 4 pins per port
+* Basic SiLabs C2 master
 
 ## Supported host OSes
 
